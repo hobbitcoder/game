@@ -1,0 +1,2 @@
+# game
+runner type game
