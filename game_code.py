@@ -5,7 +5,7 @@ from sys import exit
 pygame.init()
 screen = pygame.display.set_mode((500,400))
 clock = pygame.time.Clock()
-random_pos_y = [random.randint(25,200),random.randint(210,400),random.randint(0,400)]
+random_pos_y = [random.randint(25,200),random.randint(300,400),random.randint(0,400)]
 random_pos_x = [random.randint(410,450)]
 game_state = "game over"
 level = "level 1"
@@ -13,7 +13,7 @@ score = 0
 game_over_message = "start"
 
 #book
-book_surf = pygame.surface.Surface((25,60)).convert_alpha()
+book_surf = pygame.surface.Surface((25,50)).convert_alpha()
 book_surf.fill((200,0,0))
 book_rect = book_surf.get_rect(midtop = (30,70))
 book_gravity = 10
@@ -26,7 +26,7 @@ def display_score(scor):
   screen.blit(score_surf,score_rect)
 
 #backround
-backround = pygame.surface.Surface((500,400)).convert()     
+backround = pygame.surface.Surface((500,400)).convert_alpha()     
 
 #arrows
 class arrow:
@@ -49,15 +49,15 @@ class arrow:
     
   def reset_pos(self,arrow_number):
     if arrow_number == 0:
-      self.rect.bottomleft = (random.randint(410,450),random.randint(30,200))
+      self.rect.bottomleft = (random.randint(410,450),random.randint(30,100))
     elif arrow_number ==1:
-      self.rect.bottomleft = (random.randint(410,450),random.randint(210,400))
+      self.rect.bottomleft = (random.randint(410,450),random.randint(300,400))
     elif arrow_number == 2: 
-      self.rect.bottomleft = (random.randint(410,450),random.randint(30,400))
+      self.rect.bottomleft = (random.randint(410,450),random.randint(120,280))
 
 
 arrow1 = arrow(random_pos_y[0],random_pos_x[0])
-arrow1_arrow_num = arrow1.get_arrow_number()
+arrow1_arrownum = arrow1.get_arrow_number()
 
 arrow2 = arrow(random_pos_y[1],random_pos_x[0])
 arrow2_arrownum = arrow2.get_arrow_number()
@@ -127,7 +127,7 @@ while  True:
     # resets the arrows pos
     if arrow1.rect.right <= 0 :
       score += 1
-      arrow1.reset_pos(arrow1_arrow_num)
+      arrow1.reset_pos(arrow1_arrownum)
     
     if arrow2.rect.right <= 0 :
       score += 1
@@ -161,3 +161,4 @@ while  True:
   
   pygame.display.update()
   clock.tick(60)  
+ 
